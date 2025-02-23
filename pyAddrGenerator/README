@@ -1,0 +1,12 @@
+Geocoding and Reverse Geocoding Tool
+
+This program allows users to convert addresses into geographic coordinates (latitude and longitude)
+and vice versa using the Nominatim geocoding service. It supports:
+
+- Address to coordinates conversion.
+- Coordinates to address conversion (reverse geocoding).
+- Input validation for addresses and coordinates.
+- Default location based on the user's local timezone.
+
+The program is built using the `geopy` library and is designed to handle user input errors gracefully,
+providing informative feedback for invalid inputs or geocoding failures.
