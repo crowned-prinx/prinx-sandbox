@@ -75,7 +75,7 @@ def translate_to_pidgin():
         return jsonify({"pidgin_text": pidgin_text})
 
     except Exception as e:
-        print(f"Error during translation: {e}")  # Log the error
+        print(f"Error during translation: {e}")
         return jsonify({"error": "Translation failed"}), 500
 
 

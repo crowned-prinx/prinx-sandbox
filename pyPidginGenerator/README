@@ -1,0 +1,6 @@
+English to Pidgin language translator
+
+
+# This REST API uses the Gemini model to translate English text to Pidgin. It expects a JSON payload with a "text" field and an optional "tone" field.
+# The "text" field should contain the English text to translate to Pidgin.
+# The "tone" field should contain the tone of the translation: "informal" or "formal". If not provided, the tone defaults to "informal".
