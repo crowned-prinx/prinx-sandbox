@@ -68,7 +68,10 @@ def translate_to_pidgin():
             else:
                 return jsonify({"error": "Invalid tone. Must be 'informal' or 'formal'"}), 400
 
-        prompt = f'Convert this exact word or sentence to Pidgin in {tone} way and return just the converted word or sentence ONLY!: "{english_text}"'
+        prompt = (f'Convert the text inside the brackets to Pidgin using {tone} tone. '
+          f'If the text is already in Pidgin, convert it to English: [{english_text}]. '
+          f'Return only the converted text.')
+
         response = chat_session.send_message(prompt)
         pidgin_text = response.text
 
