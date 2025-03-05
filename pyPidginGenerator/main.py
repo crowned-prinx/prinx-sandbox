@@ -44,7 +44,7 @@ def get_items():
 def translate_to_pidgin():
     """
     Translates English text to Pidgin using the Gemini model.
-    Expects a JSON payload with a "text" field.
+    Expects a JSON payload with a "text" and an optional "tone" field.
     Returns a JSON response with the translated text.
     """
     try:
