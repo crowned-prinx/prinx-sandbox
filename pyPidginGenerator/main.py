@@ -68,9 +68,16 @@ def translate_to_pidgin():
             else:
                 return jsonify({"error": "Invalid tone. Must be 'informal' or 'formal'"}), 400
 
-        prompt = (f'Convert the text inside the brackets to Pidgin using {tone} tone. '
-          f'If the text is already in Pidgin, convert it to English: [{english_text}]. '
-          f'Return only the converted text.')
+        
+        prompt = (
+                    f'You are a language translator. Your task is to convert the following text to {tone} Pidgin if it is in English, '
+                    f'or to grammatically correct English if it is in Pidgin. '
+                    f'For example: '
+                    f'1. Input: "How are you?" → Output: "How you dey?" '
+                    f'2. Input: "How you dey?" → Output: "How are you?" '
+                    f'Here is the text: "{english_text}". '
+                    f'Return only the converted text without any additional explanations or formatting.'
+                )
 
         response = chat_session.send_message(prompt)
         pidgin_text = response.text
