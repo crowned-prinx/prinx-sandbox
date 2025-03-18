@@ -2,8 +2,6 @@
 
 A simple chatbot built using **Natural Language Processing (NLP)** with **NLTK** and **TensorFlow/Keras**. The chatbot can understand user inputs, predict intents, and respond accordingly. It supports features like greeting, time, date, and goodbye responses.
 
----
-
 ## Features
 
 - **Intent Recognition**: Uses a pre-trained model to classify user inputs into predefined intents.
@@ -12,8 +10,6 @@ A simple chatbot built using **Natural Language Processing (NLP)** with **NLTK**
 - **Interactive**: Allows users to choose a preferred bot gender (Male or Female) and provides personalized interactions.
   **Note!**: Most information in the `intents.json` may be outdated.
 
----
-
 ## Requirements
 
 - Python 3.8 or later
@@ -21,8 +17,6 @@ A simple chatbot built using **Natural Language Processing (NLP)** with **NLTK**
   ```bash
   pip install tensorflow nltk numpy
   ```
-
----
 
 ## Setup
 
@@ -39,8 +33,6 @@ A simple chatbot built using **Natural Language Processing (NLP)** with **NLTK**
    pip install -r requirements.txt
    ```
 
----
-
 ## File Structure
 
 - `main.py`: Main script for the chatbot.
@@ -48,8 +40,6 @@ A simple chatbot built using **Natural Language Processing (NLP)** with **NLTK**
 - `words.pkl`: Saved vocabulary for the chatbot.
 - `classes.pkl`: Saved intent classes for the chatbot.
 - `chatbot_model.h5`: Pre-trained model for intent classification.
-
----
 
 ## Usage
 
@@ -67,14 +57,10 @@ A simple chatbot built using **Natural Language Processing (NLP)** with **NLTK**
 
 5. Type `quit` to exit the chat.
 
----
-
 ## Customization
 
 - Add new intents, patterns, and responses in `intents.json`.
 - Retrain the model by uncommenting the training section in the script.
-
----
 
 ## Example Interaction
 
