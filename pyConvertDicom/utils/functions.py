@@ -4,6 +4,7 @@ import os
 from pydicom import dcmread
 import glob
 from enum import Enum, unique
+import logging
 
 @unique # Duplicate values will raise an error
 class Format(Enum):
@@ -18,33 +19,55 @@ def check_format(format: str):
         return True
     else:
         return False
-    
-def check_path(input_path: str, output_path: str):
-    if os.path.exists(input_path):
-        if not os.path.isdir(input_path):
-            print(f"Error: Make sure the `input_path` is a folder.")
-            return False
-        input_path = input_path if input_path[-1] == "/" else input_path + "/"
-    else:
-        print(f"Error: Make sure the `input_path` is valid.")
-        return False
-       
+
+def validate_and_prepare_paths(input_path, output_path):
+    """
+    Validate input and output paths, ensuring the input path is a valid directory
+    and the output path exists (creating it if necessary).
+
+    Args:
+        input_path (str): Path to the input directory.
+        output_path (str): Path to the output directory.
+
+    Returns:
+        tuple: (input_path, output_path) if both paths are valid, else None.
+    """
+    # Validate input_path
+    if not isinstance(input_path, str) or not isinstance(output_path, str):
+        logging.error("Input and output paths must be strings.")
+        return None
+
+    if not os.path.exists(input_path):
+        logging.error(f"Input path does not exist: {input_path}")
+        return None
+
+    if not os.path.isdir(input_path):
+        logging.error(f"Input path is not a directory: {input_path}")
+        return None
+
+    # Normalize input_path (ensure it ends with a separator)
+    input_path = os.path.normpath(input_path) + os.sep
+
+    # Validate and create output_path if necessary
     if not os.path.exists(output_path):
         try:
-            os.mkdir(output_path)
-        except Exception as e:
-            print(f"Error: {e}: Something went wrong creating {output_path} folder.")
-            return False
-    return input_path
+            os.makedirs(output_path, exist_ok=True)  # Create directory and parents if needed
+            logging.info(f"Created output directory: {output_path}")
+        except OSError as e:
+            logging.error(f"Failed to create output directory {output_path}: {e}")
+            return None
+
+    return input_path, output_path
 
 def convert_dcm(input_path: str, output_path: str, format: str = "png", log: bool = False):
     ''' Takes two required arguments: (1) An input folder containing .dcm files. (2) The desired output folder.\n
     This function converts all DICOM images in the input folder to the default format (png) and saves them in the output folder specified.
     '''
-    input_path = check_path(input_path, output_path)
+    validate_results = validate_and_prepare_paths(input_path, output_path)
     format = format.lower()
     
-    if input_path:
+    if validate_results:
+        input_path, output_path = validate_results
         dcms = [os.path.basename(x) for x in glob.glob(input_path + './*.dcm', recursive=True)]
         image_count = 0
         for i, dcm in enumerate(dcms):
