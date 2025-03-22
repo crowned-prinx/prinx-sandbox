@@ -22,13 +22,13 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Function: `convert_dcm`
+### Function: Run `main.py`
 
 ```python
-convert_dcm(input_path: str, output_path: str, format: str = "png", log: bool = False)
+python main.py
 ```
 
-#### Parameters:
+#### Customization: `convert_dcm(input_path: str, output_path: str, format: str = "png", log: bool = False)`
 
 - **`input_path`**: Path to the folder containing `.dcm` files.
 - **`output_path`**: Path to the folder where converted images will be saved.
