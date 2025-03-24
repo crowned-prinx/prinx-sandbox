@@ -24,7 +24,7 @@ A simple Python game where you guess a word by speaking it aloud. The game uses 
 2. Download or clone the repository.
 3. Run the game:
    ```bash
-   python game.py
+   python main.py
    ```
 4. Follow the on-screen instructions and speak your guesses into the microphone.
 
